@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logged Out</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <h2>Diabetic Retinopathy Detection</h2>
+        <div>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('prediction') }}">Prediction</a>
+        </div>
+    </nav>
+
+    <div class="container form-box">
+        <h2>Successfully Logged Out</h2>
+        <p>Your session has ended.</p>
+        <a class="btn" href="{{ url_for('login') }}">Login Again</a>
+    </div>
+</body>
+</html>

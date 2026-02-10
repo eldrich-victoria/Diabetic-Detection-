@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+    <nav>
+        <h2>Diabetic Retinopathy Classification</h2>
+        <div>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container form-box">
+        <h2>Upload Fundus Image</h2>
+
+        <form action="{{ url_for('result') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="msg">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        {% if prediction %}
+            <div class="result">
+                <h3>Prediction Result</h3>
+                <p>{{ prediction }}</p>
+            </div>
+        {% endif %}
+
+        <div class="classes">
+            <h4>Classes</h4>
+            <ul>
+                <li>No Diabetic Retinopathy</li>
+                <li>Mild DR</li>
+                <li>Moderate DR</li>
+                <li>Severe DR</li>
+                <li>Proliferative DR</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

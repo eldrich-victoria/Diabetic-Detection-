@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetic Retinopathy Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <h2>Diabetic Retinopathy Detection</h2>
+        <div>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('prediction') }}">Prediction</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Deep Learning Fundus Image Analysis</h1>
+
+        <div class="hero">
+            <img src="{{ url_for('static', filename='images/normal_eye.png') }}" alt="Normal Eye">
+            <img src="{{ url_for('static', filename='images/dr_eye.png') }}" alt="Diabetic Retinopathy">
+        </div>
+
+        <section>
+            <h3>What this app does</h3>
+            <p>
+                Upload a retinal fundus image to get an automated classification of diabetic retinopathy severity.
+                This tool uses a deep learning model (Xception) trained on labeled retinal images.
+            </p>
+        </section>
+
+        <section>
+            <h3>Disclaimer</h3>
+            <p>
+                This application is for educational and research purposes only and must not be used as a medical diagnostic tool.
+            </p>
+        </section>
+    </div>
+</body>
+</html>
