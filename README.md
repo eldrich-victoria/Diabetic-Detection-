@@ -68,9 +68,6 @@ fundus-dr-app/
 ├── uploads/
 └── logs/
 
-
-Note: data/, uploads/, and models/ should not be committed to public repositories.
-
 ⚙️ Setup Instructions
 1. Create Virtual Environment (Python 3.10)
 python -m venv venv
@@ -80,33 +77,24 @@ venv\Scripts\activate
 pip install -r requirements.txt
 
 3. Add Trained Model
-
 Place your trained model here:
-
 models/xception_dr.h5
 
 4. Run the Web App
 python app.py
 
-
 Open in browser:
-
 http://127.0.0.1:5000
 
 🧪 Training & Evaluation (Offline)
 
 Train model:
-
 ml/train_xception.ipynb
 
-
 Evaluate model:
-
 ml/evaluate.ipynb
 
-
 Ensure your dataset is placed under:
-
 data/training/
 data/testing/
 
