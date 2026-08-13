@@ -1,0 +1,57 @@
+# Python cache and byte code
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual Environments
+venv/
+env/
+.env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment Variables
+.env
+.env.local
+.env.development
+.env.production
+.env.*
+!.env.example
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Application Specific Logs
+logs/*
+!logs/.gitkeep
+!logs/.keep
+!logs/README.md
+*.log
+
+# Application Specific Uploads
+uploads/*
+!uploads/.gitkeep
+!uploads/.keep
+!uploads/README.md
+
+# Build / Distribution
+build/
+dist/
+*.egg-info/
+coverage/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
