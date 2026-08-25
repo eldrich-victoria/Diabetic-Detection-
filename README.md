@@ -1,20 +1,11 @@
-# Diabetic Retinopathy Detection
-
-> Automated fundus image grading across five severity levels using a fine-tuned Xception CNN and a Flask web application.
-
-[![Python](https://img.shields.io/badge/Python-3.9--3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15-FF6F00?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
-[![Flask](https://img.shields.io/badge/Flask-3.0-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-
----
-
+# <center>RetinaGuard</center>
 ## Overview
 
 Diabetic retinopathy (DR) is a leading cause of preventable blindness. This project automates the classification of retinal fundus photographs into five DR severity grades — No DR, Mild, Moderate, Severe, and Proliferative DR. It uses deep transfer learning via a pre-trained Xception Convolutional Neural Network (CNN). A Flask-based web application wraps the model to provide a seamless, browser-based inference interface.
 
 > **Disclaimer:** For educational and research purposes only. Not a clinical diagnostic tool.
 
-### Application Preview
+## Application Preview
 
 ![Home Page](screenshots/Home-page.png)
 *Fig 1: Home Page showing project introduction.*
@@ -48,7 +39,7 @@ Diabetic retinopathy (DR) is a leading cause of preventable blindness. This proj
 
 ---
 
-## Architecture / System Design
+## Architecture 
 
 The application follows a standard client-server architecture with an embedded machine learning inference engine.
 
@@ -78,21 +69,64 @@ graph TD
 ## Project Structure
 
 ```text
-Diabetic-Detection/
-├── app.py                      # Main Flask application and API routes
-├── config.py                   # Centralized configuration (paths, keys)
-├── requirements.txt            # Python dependencies
-├── ml/                         # Machine Learning pipeline
-│   ├── preprocessing.py        # Image load and preprocess utilities
-│   ├── train_xception.ipynb    # Model training and data augmentation pipeline
-│   └── evaluate.ipynb          # Evaluation metrics (confusion matrix, report)
-├── models/                     
-│   └── xception_dr.h5          # Trained Xception model weights (92 MB)
-├── screenshots/                # Application UI screenshots
-├── static/                     # CSS, JavaScript, and static images
-├── templates/                  # HTML templates
-└── uploads/                    # Directory for user uploads
+diabetic-detection/
+├── .git/
+├── .gitignore
+├── README.md
+├── __pycache__/
+├── app.py
+├── config.py
+├── logs/
+│   └── app.log
+├── ml/
+│   ├── .ipynb_checkpoints/
+│   ├── evaluate.ipynb
+│   ├── preprocessing.py
+│   └── train_xception.ipynb
+├── models/
+│   └── xception_dr.h5
+├── requirements.txt
+├── screenshots/
+│   ├── Home-page.png
+│   ├── Login-page.png
+│   ├── Logout-page.png
+│   ├── Predicted-page.png
+│   └── Prediction-page.png
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   ├── images/
+│   │   ├── avatar.png
+│   │   ├── dr_eye.png
+│   │   └── normal_eye.png
+│   └── js/
+│       └── main.js
+├── templates/
+│   ├── index.html
+│   ├── login.html
+│   ├── logout.html
+│   ├── prediction.html
+│   └── register.html
+├── uploads/
+│   ├── 0126aeca-b978-45a5-96ea-38bdb8347329_caaed71a-8a8e-4993-a2fc-04823c85eaed_0104b032c141.png
+│   ├── 8528aa00-b883-40c5-a9b4-39eb520ceac1_03e25101e8e8.png
+│   └── caaed71a-8a8e-4993-a2fc-04823c85eaed_0104b032c141.png
+└── venv/
 ```
+
+- `app.py` — Main Flask application and API routes.
+- `config.py` — Centralized configuration (paths, keys).
+- `requirements.txt` — Python dependencies.
+- `logs/` — Application logs directory.
+- `ml/` — Machine Learning pipeline.
+  - `preprocessing.py` — Image load and preprocess utilities.
+  - `train_xception.ipynb` — Model training and data augmentation pipeline.
+  - `evaluate.ipynb` — Evaluation metrics (confusion matrix, report).
+- `models/` — Trained model artifacts.
+- `screenshots/` — Application UI screenshots.
+- `static/` — CSS, JavaScript, and static images.
+- `templates/` — HTML templates.
+- `uploads/` — Directory for user uploads.
 
 ---
 
@@ -115,7 +149,7 @@ Diabetic-Detection/
 
 ---
 
-## Algorithms / Models
+## Algorithms 
 
 **Xception CNN (Extreme Inception):**
 Xception is used as the backbone because its depthwise separable convolutions offer high accuracy with fewer parameters, reducing overfitting risks on medical datasets. 
@@ -127,19 +161,6 @@ Training utilizes the Adam optimizer with categorical cross-entropy.
 
 ---
 
-## API
-
-| Method | Endpoint | Purpose |
-|---|---|---|
-| `GET` | `/` | Renders the landing page. |
-| `GET` | `/login` | Renders the demo login page. |
-| `POST` | `/afterlogin`| Processes login credentials and creates a session. |
-| `GET` | `/prediction`| Renders the image upload form (requires active session). |
-| `POST` | `/result` | Accepts image file, runs inference, and returns prediction. |
-| `GET` | `/logout` | Clears user session and logs out. |
-
----
-
 ## Security
 
 *   **File Name Sanitization:** User-uploaded files are prepended with `uuid.uuid4()` to prevent path traversal and file overwrites.
@@ -148,7 +169,7 @@ Training utilizes the Adam optimizer with categorical cross-entropy.
 
 ---
 
-## Performance / Optimization
+## Performance 
 
 *   **Singleton Model Loading:** Prevents disk I/O bottlenecks during prediction by holding the model in RAM.
 *   **Efficient Preprocessing:** Utilizes vectorized NumPy operations for image scaling prior to tensor operations.
@@ -156,7 +177,7 @@ Training utilizes the Adam optimizer with categorical cross-entropy.
 
 ---
 
-## Results / Outcomes
+## Results 
 
 *   **Model Evaluation:** Evaluated on a validation dataset using accuracy, precision, recall, and F1 scores. 
 *   **Visual Metrics:** A Seaborn-generated confusion matrix identifies misclassifications between adjacent DR grades.
@@ -177,14 +198,6 @@ Training utilizes the Adam optimizer with categorical cross-entropy.
     *   *Solution:* Instantiated `model = load_model()` at the module level (singleton).
 
 ---
-
-## Limitations
-
-*   **Demo Authentication:** The login route accepts any non-empty credentials. No actual password hashing or database integration exists, despite `cloudant` being listed in requirements.
-*   **Storage Accumulation:** Uploaded images in `uploads/` are not automatically purged.
-
----
-
 ## Future Improvements
 
 *   **Grad-CAM Visualizations:** Generate heatmaps overlaying the input image to explain model predictions.
